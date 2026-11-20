@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RevealDiv } from "@/components/ui/reveal";
 import { ArrowRight, X } from "lucide-react";
 import { useSound } from "@/components/fx/SoundProvider";
+import EquipmentRequestModal from "@/components/sections/EquipmentRequestModal";
 
 interface GearItem {
   name: string;
@@ -33,7 +34,7 @@ function useIsMobile() {
       return () => mq.removeEventListener("change", cb);
     },
     () => window.matchMedia("(max-width: 767px)").matches,
-    () => false
+    () => false,
   );
 }
 
@@ -42,72 +43,160 @@ const categories: Category[] = [
     id: "cameras",
     title: "CAMERAS",
     brands: "ARRI • RED • SONY",
-    image: "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?q=80&w=2032&auto=format&fit=crop",
-    summary: "Cinema bodies for features, commercials and music videos, all supplied with batteries, media and monitoring.",
+    image:
+      "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?q=80&w=2032&auto=format&fit=crop",
+    summary:
+      "Cinema bodies for features, commercials and music videos, all supplied with batteries, media and monitoring.",
     stats: [
       { value: "08", label: "Camera bodies" },
       { value: "3", label: "Brands" },
       { value: "8K", label: "Max resolution" },
     ],
     items: [
-      { name: "ARRI Alexa Mini LF", type: "Large format cinema", qty: 2, specs: "4.5K LF • ARRIRAW • 14+ stops" },
-      { name: "RED V-Raptor 8K VV", type: "Cinema", qty: 2, specs: "8K VV • 120 fps • REDCODE RAW" },
-      { name: "Sony FX6", type: "Compact cinema", qty: 3, specs: "4K 120 fps • Full-frame • Dual ISO" },
-      { name: "Sony A7S III", type: "Mirrorless / B-cam", qty: 1, specs: "4K 120 fps • 10-bit 4:2:2" },
+      {
+        name: "ARRI Alexa Mini LF",
+        type: "Large format cinema",
+        qty: 2,
+        specs: "4.5K LF • ARRIRAW • 14+ stops",
+      },
+      {
+        name: "RED V-Raptor 8K VV",
+        type: "Cinema",
+        qty: 2,
+        specs: "8K VV • 120 fps • REDCODE RAW",
+      },
+      {
+        name: "Sony FX6",
+        type: "Compact cinema",
+        qty: 3,
+        specs: "4K 120 fps • Full-frame • Dual ISO",
+      },
+      {
+        name: "Sony A7S III",
+        type: "Mirrorless / B-cam",
+        qty: 1,
+        specs: "4K 120 fps • 10-bit 4:2:2",
+      },
     ],
   },
   {
     id: "lenses",
     title: "LENSES",
     brands: "COOKE • ZEISS • ATLAS",
-    image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format&fit=crop",
-    summary: "Matched prime sets and anamorphics for a distinct look, with fully calibrated focus marks.",
+    image:
+      "https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format&fit=crop",
+    summary:
+      "Matched prime sets and anamorphics for a distinct look, with fully calibrated focus marks.",
     stats: [
       { value: "20", label: "Lenses" },
       { value: "4", label: "Prime & zoom sets" },
       { value: "T1.3", label: "Fastest stop" },
     ],
     items: [
-      { name: "Cooke S4/i Prime Set", type: "Spherical primes", qty: 8, specs: "18–100mm • T2 • PL mount" },
-      { name: "Zeiss Supreme Prime", type: "Full-frame primes", qty: 6, specs: "21–135mm • T1.5 • PL / LPL" },
-      { name: "Atlas Orion Anamorphic", type: "Anamorphic 2x", qty: 4, specs: "40–100mm • T2 • 2x squeeze" },
-      { name: "Angénieux EZ-1", type: "Zoom", qty: 2, specs: "30–90mm • T2 • Super 35" },
+      {
+        name: "Cooke S4/i Prime Set",
+        type: "Spherical primes",
+        qty: 8,
+        specs: "18–100mm • T2 • PL mount",
+      },
+      {
+        name: "Zeiss Supreme Prime",
+        type: "Full-frame primes",
+        qty: 6,
+        specs: "21–135mm • T1.5 • PL / LPL",
+      },
+      {
+        name: "Atlas Orion Anamorphic",
+        type: "Anamorphic 2x",
+        qty: 4,
+        specs: "40–100mm • T2 • 2x squeeze",
+      },
+      {
+        name: "Angénieux EZ-1",
+        type: "Zoom",
+        qty: 2,
+        specs: "30–90mm • T2 • Super 35",
+      },
     ],
   },
   {
     id: "lighting",
     title: "LIGHTING",
     brands: "APUTURE • NANLITE • ARRI",
-    image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=2058&auto=format&fit=crop",
-    summary: "From hard sources to soft panels, with modifiers, stands and distro included in every kit.",
+    image:
+      "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=2058&auto=format&fit=crop",
+    summary:
+      "From hard sources to soft panels, with modifiers, stands and distro included in every kit.",
     stats: [
       { value: "24", label: "Fixtures" },
       { value: "3", label: "Brands" },
       { value: "1200W", label: "Max output" },
     ],
     items: [
-      { name: "Aputure 1200d Pro", type: "Daylight COB", qty: 2, specs: "1200W • 5600K • Bowens mount" },
-      { name: "Aputure 600d Pro", type: "Daylight COB", qty: 4, specs: "600W • 5600K • Wireless DMX" },
-      { name: "Nanlite Forza 500B", type: "Bi-colour LED", qty: 6, specs: "500W • 2700–6500K" },
-      { name: "ARRI SkyPanel S60-C", type: "Soft panel", qty: 4, specs: "RGBW • 2800–10000K • DMX" },
+      {
+        name: "Aputure 1200d Pro",
+        type: "Daylight COB",
+        qty: 2,
+        specs: "1200W • 5600K • Bowens mount",
+      },
+      {
+        name: "Aputure 600d Pro",
+        type: "Daylight COB",
+        qty: 4,
+        specs: "600W • 5600K • Wireless DMX",
+      },
+      {
+        name: "Nanlite Forza 500B",
+        type: "Bi-colour LED",
+        qty: 6,
+        specs: "500W • 2700–6500K",
+      },
+      {
+        name: "ARRI SkyPanel S60-C",
+        type: "Soft panel",
+        qty: 4,
+        specs: "RGBW • 2800–10000K • DMX",
+      },
     ],
   },
   {
     id: "grip",
     title: "GRIP & SUPPORT",
     brands: "DJI • RONIN • TRIPODS",
-    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop",
-    summary: "Stabilisation, tripods and rigging to keep every shot steady, whether on a stage or on location.",
+    image:
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop",
+    summary:
+      "Stabilisation, tripods and rigging to keep every shot steady, whether on a stage or on location.",
     stats: [
       { value: "16", label: "Support units" },
       { value: "4", label: "Gimbals" },
       { value: "13kg", label: "Max payload" },
     ],
     items: [
-      { name: "DJI Ronin 2", type: "3-axis gimbal", qty: 2, specs: "13.6 kg payload • Dual battery" },
-      { name: "DJI RS 3 Pro", type: "Compact gimbal", qty: 2, specs: "4.5 kg payload • Carbon fibre" },
-      { name: "Sachtler Video 18", type: "Fluid-head tripod", qty: 4, specs: "100mm bowl • 18 kg payload" },
-      { name: "Dana Dolly + Track", type: "Dolly", qty: 2, specs: "Portable • 8 ft straight track" },
+      {
+        name: "DJI Ronin 2",
+        type: "3-axis gimbal",
+        qty: 2,
+        specs: "13.6 kg payload • Dual battery",
+      },
+      {
+        name: "DJI RS 3 Pro",
+        type: "Compact gimbal",
+        qty: 2,
+        specs: "4.5 kg payload • Carbon fibre",
+      },
+      {
+        name: "Sachtler Video 18",
+        type: "Fluid-head tripod",
+        qty: 4,
+        specs: "100mm bowl • 18 kg payload",
+      },
+      {
+        name: "Dana Dolly + Track",
+        type: "Dolly",
+        qty: 2,
+        specs: "Portable • 8 ft straight track",
+      },
     ],
   },
 ];
@@ -115,10 +204,22 @@ const categories: Category[] = [
 export default function EquipmentSection() {
   const { playHoverSound, playShutterSound } = useSound();
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [requestOpen, setRequestOpen] = useState(false);
+  const [requestKit, setRequestKit] = useState<string | null>(null);
   const isMobile = useIsMobile();
   const active = categories.find((c) => c.id === activeId) ?? null;
 
   const closeModal = useCallback(() => setActiveId(null), []);
+
+  const closeRequest = useCallback(() => setRequestOpen(false), []);
+
+  // Scrolls down to the contact section, then pops the request box open
+    // Opens the request box right where the user is (no scrolling)
+  const openRequest = useCallback((kit: string | null) => {
+    setActiveId(null); // close the gear dialog if it was open
+    setRequestKit(kit);
+    setRequestOpen(true);
+  }, []);
 
   // Lock page scroll while open and close on Escape
   useEffect(() => {
@@ -134,15 +235,24 @@ export default function EquipmentSection() {
   }, [activeId, closeModal]);
 
   return (
-    <section id="equipment" className="relative py-16 sm:py-24 md:py-32 px-6 sm:px-8 lg:px-12 bg-[#050505] text-white overflow-hidden">
+    <section
+      id="equipment"
+      className="relative py-16 sm:py-24 md:py-32 px-6 sm:px-8 lg:px-12 bg-[#050505] text-white overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <RevealDiv
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
-                    className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 md:mb-16 border-b border-white/10 pb-8"
+          transition={{
+            type: "spring",
+            stiffness: 90,
+            damping: 25,
+            mass: 0.8,
+            restDelta: 0.001,
+          }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 md:mb-16 border-b border-white/10 pb-8"
         >
           <div>
             <span className="text-[13px] font-mono text-[#E50914] uppercase tracking-[0.2em] font-semibold block mb-2">
@@ -173,8 +283,15 @@ export default function EquipmentSection() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001, delay: idx * 0.1 }}
-                            className="group relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/10 block w-full text-left select-none cursor-pointer"
+              transition={{
+                type: "spring",
+                stiffness: 90,
+                damping: 25,
+                mass: 0.8,
+                restDelta: 0.001,
+                delay: idx * 0.1,
+              }}
+              className="group relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/10 block w-full text-left select-none cursor-pointer"
             >
               {/* Cinematic Background Image */}
               <Image
@@ -222,27 +339,37 @@ export default function EquipmentSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
-                    className="border-t border-white/10 pt-10 md:pt-16 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left"
+          transition={{
+            type: "spring",
+            stiffness: 90,
+            damping: 25,
+            mass: 0.8,
+            restDelta: 0.001,
+          }}
+          className="border-t border-white/10 pt-10 md:pt-16 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left"
         >
           <div className="space-y-2 max-w-xl">
             <h3 className="font-display text-3xl sm:text-4xl tracking-wider text-white uppercase">
               NEED SPECIFIC GEAR?
             </h3>
             <p className="font-sans text-neutral-400 text-sm sm:text-base font-light leading-relaxed">
-              Tell us what you&apos;re shooting and we&apos;ll help build the right kit.
+              Tell us what you&apos;re shooting and we&apos;ll help build the
+              right kit.
             </p>
           </div>
 
-          <a
-            href="#contact"
+          <button
+            type="button"
             onMouseEnter={playHoverSound}
-            onClick={playShutterSound}
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[13px] font-bold uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(229,9,20,0.3)] shrink-0"
+            onClick={() => {
+              playShutterSound();
+              openRequest(null);
+            }}
+            className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[13px] font-bold uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(229,9,20,0.3)] shrink-0 cursor-pointer"
           >
             <span>REQUEST EQUIPMENT</span>
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </button>
         </RevealDiv>
       </div>
       {/* Category Detail Modal */}
@@ -270,10 +397,19 @@ export default function EquipmentSection() {
             {/* Mobile: bottom sheet. Desktop: centered dialog. */}
             <motion.div
               key={active.id}
-              initial={isMobile ? { y: "100%" } : { opacity: 0, scale: 0.94, y: 24 }}
+              initial={
+                isMobile ? { y: "100%" } : { opacity: 0, scale: 0.94, y: 24 }
+              }
               animate={isMobile ? { y: 0 } : { opacity: 1, scale: 1, y: 0 }}
-              exit={isMobile ? { y: "100%" } : { opacity: 0, scale: 0.94, y: 24 }}
-              transition={{ type: "spring", stiffness: 260, damping: 32, mass: 0.9 }}
+              exit={
+                isMobile ? { y: "100%" } : { opacity: 0, scale: 0.94, y: 24 }
+              }
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 32,
+                mass: 0.9,
+              }}
               drag={isMobile ? "y" : false}
               dragConstraints={{ top: 0, bottom: 0 }}
               dragElastic={{ top: 0, bottom: 0.6 }}
@@ -327,8 +463,13 @@ export default function EquipmentSection() {
                 {/* Quick stats */}
                 <div className="grid grid-cols-3 gap-2 md:gap-3 mb-6">
                   {active.stats.map((st) => (
-                    <div key={st.label} className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3 text-center md:text-left">
-                      <div className="font-display text-2xl md:text-3xl tracking-wider text-white">{st.value}</div>
+                    <div
+                      key={st.label}
+                      className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3 text-center md:text-left"
+                    >
+                      <div className="font-display text-2xl md:text-3xl tracking-wider text-white">
+                        {st.value}
+                      </div>
                       <div className="font-mono text-[11px] md:text-[11px] text-neutral-500 uppercase tracking-widest mt-0.5">
                         {st.label}
                       </div>
@@ -339,13 +480,20 @@ export default function EquipmentSection() {
                 {/* Item list */}
                 <ul className="divide-y divide-white/10 border-y border-white/10 mb-6">
                   {active.items.map((item) => (
-                    <li key={item.name} className="py-3.5 flex items-start justify-between gap-4">
+                    <li
+                      key={item.name}
+                      className="py-3.5 flex items-start justify-between gap-4"
+                    >
                       <div className="min-w-0">
-                        <p className="font-sans text-sm md:text-base text-white font-medium">{item.name}</p>
+                        <p className="font-sans text-sm md:text-base text-white font-medium">
+                          {item.name}
+                        </p>
                         <p className="font-mono text-[11px] md:text-xs text-neutral-500 uppercase tracking-wider mt-0.5">
                           {item.type}
                         </p>
-                        <p className="font-sans text-xs md:text-sm text-neutral-400 font-light mt-1">{item.specs}</p>
+                        <p className="font-sans text-xs md:text-sm text-neutral-400 font-light mt-1">
+                          {item.specs}
+                        </p>
                       </div>
                       <span className="shrink-0 font-mono text-[13px] text-[#E50914] border border-[#E50914]/30 rounded-full px-2.5 py-1">
                         ×{item.qty}
@@ -354,23 +502,29 @@ export default function EquipmentSection() {
                   ))}
                 </ul>
 
-                <a
-                  href="#contact"
+                <button
+                  type="button"
                   onMouseEnter={playHoverSound}
                   onClick={() => {
                     playShutterSound();
-                    closeModal();
+                    openRequest(active.title);
                   }}
-                  className="flex w-full md:inline-flex md:w-auto items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[13px] font-bold uppercase tracking-widest transition-colors shadow-[0_0_30px_rgba(229,9,20,0.3)]"
+                  className="flex w-full md:inline-flex md:w-auto items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[13px] font-bold uppercase tracking-widest transition-colors shadow-[0_0_30px_rgba(229,9,20,0.3)] cursor-pointer"
                 >
                   <span>REQUEST THIS KIT</span>
                   <ArrowRight className="w-4 h-4" />
-                </a>
+                </button>
               </div>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
+      {/* Contact request box (opens after scrolling to the contact section) */}
+      <EquipmentRequestModal
+        open={requestOpen}
+        kit={requestKit}
+        onClose={closeRequest}
+      />
     </section>
   );
 }

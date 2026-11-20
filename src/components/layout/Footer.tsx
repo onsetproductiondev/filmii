@@ -37,11 +37,11 @@ export default function Footer() {
                   SELECTED WORK
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="#services" onMouseEnter={playHoverSound} className="hover:text-white transition-colors">
                   STUDIO SERVICES
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a href="#equipment" onMouseEnter={playHoverSound} className="hover:text-white transition-colors">
                   EQUIPMENT RENTALS

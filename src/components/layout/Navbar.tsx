@@ -34,7 +34,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
 
   const navLinks = [
     { label: "WORK", href: "#work" },
-    { label: "SERVICES", href: "#services" },
+    // { label: "SERVICES", href: "#services" },
     { label: "EQUIPMENT", href: "#equipment" },
     { label: "ABOUT", href: "#about" },
     { label: "CONTACT", href: "#contact" },

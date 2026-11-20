@@ -100,7 +100,7 @@ export default function AboutSection() {
                   FOUNDER & EXECUTIVE DIRECTOR
                 </span>
                 <h4 className="font-display text-3xl text-white uppercase tracking-wider">
-                  DARSHAN @ ONSET
+                  NARENDRA @ONSET
                 </h4>
               </div>
             </div>

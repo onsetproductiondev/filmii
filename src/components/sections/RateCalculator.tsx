@@ -9,26 +9,28 @@ export default function RateCalculator() {
   const { playHoverSound, playShutterSound } = useSound();
 
   const [days, setDays] = useState<number>(2);
-  const [projectType, setProjectType] = useState<"mv" | "ep" | "commercial">("mv");
+   const [projectType, setProjectType] = useState<"mv" | "ep" | "commercial" | "realestate">("mv");
   const [crewTier, setCrewTier] = useState<"minimal" | "standard" | "full">("standard");
   const [cameraTier, setCameraTier] = useState<"fx9" | "red" | "arri">("arri");
   const [vfxTier, setVfxTier] = useState<boolean>(true);
 
   // Price calculation: recomputed only when an input actually changes
   const estimatedTotal = useMemo(() => {
-    let base = 2500;
-    if (projectType === "ep") base = 4200;
-    if (projectType === "commercial") base = 5500;
+        // All prices are in INR (₹) per shoot day, except post production (one-time)
+    let base = 50000;
+    if (projectType === "ep") base = 85000;
+    if (projectType === "commercial") base = 110000;
+    if (projectType === "realestate") base = 30000;
 
-    let crewCost = 850;
-    if (crewTier === "standard") crewCost = 1800;
-    if (crewTier === "full") crewCost = 3400;
+    let crewCost = 18000;
+    if (crewTier === "standard") crewCost = 35000;
+    if (crewTier === "full") crewCost = 70000;
 
-    let cameraCost = 450;
-    if (cameraTier === "red") cameraCost = 850;
-    if (cameraTier === "arri") cameraCost = 1250;
+    let cameraCost = 10000;
+    if (cameraTier === "red") cameraCost = 20000;
+    if (cameraTier === "arri") cameraCost = 30000;
 
-    const vfxCost = vfxTier ? 1200 : 0;
+    const vfxCost = vfxTier ? 40000 : 0;
 
     const totalPerDay = base + crewCost + cameraCost;
     return totalPerDay * days + vfxCost;
@@ -120,11 +122,12 @@ export default function RateCalculator() {
               <span className="block font-mono text-[13px] text-[#E50914] font-semibold uppercase tracking-[0.15em]">
                 02 / PROJECT TYPE
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   { id: "mv", label: "MUSIC VIDEO" },
                   { id: "ep", label: "EP VISUALIZER" },
                   { id: "commercial", label: "COMMERCIAL" },
+                  { id: "realestate", label: "REAL ESTATE" },
                 ].map((item) => {
                   const isSelected = projectType === item.id;
                   return (
@@ -134,7 +137,7 @@ export default function RateCalculator() {
                       aria-pressed={isSelected}
                       onClick={() => {
                         playHoverSound();
-                        setProjectType(item.id as "mv" | "ep" | "commercial");
+                        setProjectType(item.id as "mv" | "ep" | "commercial" | "realestate");
                       }}
                       className={`py-3.5 px-4 rounded-xl border text-center font-mono text-[13px] tracking-wider uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer ${
                         isSelected
@@ -269,7 +272,7 @@ export default function RateCalculator() {
                   ESTIMATED PRODUCTION BUDGET
                 </span>
                 <div className="font-display text-6xl sm:text-7xl lg:text-8xl text-white tracking-wider">
-                  ${estimatedTotal.toLocaleString()}
+                  ₹{estimatedTotal.toLocaleString("en-IN")}
                 </div>
                 <span className="text-[13px] font-mono text-neutral-400 uppercase tracking-widest block pt-1">
                   ESTIMATED DIRECTING & PRODUCTION COST
