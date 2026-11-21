@@ -48,7 +48,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-16 sm:py-24 md:py-32 px-6 sm:px-8 lg:px-12 bg-[#050505] text-white overflow-hidden">
+    <section id="contact" className="relative py-12 sm:py-24 md:py-32 px-4 sm:px-8 lg:px-12 bg-[#050505] text-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Cinematic Ending Headline */}
         <RevealDiv
@@ -58,74 +58,74 @@ export default function ContactSection() {
           transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
                     className="max-w-4xl mx-auto text-center mb-10 md:mb-20 space-y-4 md:space-y-6"
         >
-          <span className="text-[13px] font-mono text-[#E50914] uppercase tracking-[0.2em] font-semibold block">
+          <span className="text-[11px] sm:text-[13px] font-mono text-[#E50914] uppercase tracking-[0.12em] sm:tracking-[0.2em] font-semibold block">
             07 / START A SESSION
           </span>
 
-          <h2 className="font-display text-6xl sm:text-8xl lg:text-9xl tracking-wider uppercase text-white leading-[0.88]">
+          <h2 className="font-display text-[2.6rem] min-[400px]:text-5xl sm:text-8xl lg:text-9xl tracking-wide sm:tracking-wider uppercase text-white leading-[0.9]">
             LET&apos;S MAKE <br />
             <span className="text-white">SOMETHING</span> <br />
             <span className="text-[#E50914]">WORTH WATCHING.</span>
           </h2>
 
-          <p className="text-neutral-300 font-sans text-lg max-w-xl mx-auto font-light leading-relaxed">
+          <p className="text-neutral-300 font-sans text-sm sm:text-lg max-w-xl mx-auto font-light leading-relaxed">
             Have a music video concept, EP visualizer, or camera rental inquiry? Connect with our studio team below.
           </p>
         </RevealDiv>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
           {/* Studio Hotline Details (Enters from Left) */}
           <RevealDiv
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
-                        className="lg:col-span-5 space-y-8"
+                        className="lg:col-span-5 space-y-6 sm:space-y-8"
           >
-            <div className="bg-gradient-to-br from-neutral-900 to-black p-8 lg:p-10 rounded-2xl border border-neutral-800 shadow-[0_0_50px_rgba(220,38,38,0.1)] space-y-8">
-              <h3 className="font-display text-3xl tracking-wider text-white uppercase">
+            <div className="bg-gradient-to-br from-neutral-900 to-black p-5 sm:p-8 lg:p-10 rounded-2xl border border-neutral-800 shadow-[0_0_50px_rgba(220,38,38,0.1)] space-y-6 sm:space-y-8">
+              <h3 className="font-display text-2xl sm:text-3xl tracking-wider text-white uppercase">
                 STUDIO <span className="text-[#E50914]">HOTLINE</span>
               </h3>
 
               <div className="space-y-6 font-sans">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-white/5 rounded-full text-[#E50914]">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2.5 sm:p-3 bg-white/5 rounded-full text-[#E50914] shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
-                  <div>
-                    <span className="text-neutral-400 text-xs uppercase tracking-wider font-semibold block mb-1">PHONE / WHATSAPP</span>
+                  <div className="min-w-0">
+                    <span className="text-neutral-400 text-[11px] sm:text-xs uppercase tracking-wider font-semibold block mb-1">PHONE / WHATSAPP</span>
                     <a
                       href="https://wa.me/18005556673"
                       target="_blank"
                       rel="noreferrer"
-                      className="text-white hover:text-[#E50914] font-semibold transition-colors text-base"
+                      className="text-white hover:text-[#E50914] font-semibold transition-colors text-sm sm:text-base break-words"
                     >
                       +1 (800) 555-ONSET / +1 (800) 555-6673
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-white/5 rounded-full text-[#E50914]">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2.5 sm:p-3 bg-white/5 rounded-full text-[#E50914] shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <div>
-                    <span className="text-neutral-400 text-xs uppercase tracking-wider font-semibold block mb-1">EMAIL INQUIRIES</span>
+                  <div className="min-w-0">
+                    <span className="text-neutral-400 text-[11px] sm:text-xs uppercase tracking-wider font-semibold block mb-1">EMAIL INQUIRIES</span>
                     <a
                       href="mailto:create@onsetproduction.com"
-                      className="text-white hover:text-[#E50914] font-semibold transition-colors text-base"
+                      className="text-white hover:text-[#E50914] font-semibold transition-colors text-sm sm:text-base break-words"
                     >
                       create@onsetproduction.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-white/5 rounded-full text-[#E50914]">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2.5 sm:p-3 bg-white/5 rounded-full text-[#E50914] shrink-0">
                     <MapPin className="w-4 h-4" />
                   </div>
-                  <div>
-                    <span className="text-neutral-400 text-xs uppercase tracking-wider font-semibold block mb-1">LOCATIONS</span>
+                  <div className="min-w-0">
+                    <span className="text-neutral-400 text-[11px] sm:text-xs uppercase tracking-wider font-semibold block mb-1">LOCATIONS</span>
                     <p className="text-neutral-200 font-medium text-sm tracking-wide">
                       LOS ANGELES • NEW YORK • LONDON
                     </p>
@@ -138,7 +138,7 @@ export default function ContactSection() {
                 target="_blank"
                 rel="noreferrer"
                 onMouseEnter={playHoverSound}
-                className="w-full py-4 px-6 rounded-full bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/30 text-emerald-400 font-sans font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+                className="w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-full bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/30 text-emerald-400 font-sans font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>INSTANT WHATSAPP CHAT</span>
@@ -146,7 +146,7 @@ export default function ContactSection() {
             </div>
 
             {cart.length > 0 && (
-              <div className="bg-gradient-to-br from-neutral-900 to-black p-6 rounded-2xl border border-neutral-800 font-sans text-xs space-y-3">
+              <div className="bg-gradient-to-br from-neutral-900 to-black p-4 sm:p-6 rounded-2xl border border-neutral-800 font-sans text-xs space-y-3">
                 <div className="flex justify-between items-center text-[#E50914] font-bold text-xs uppercase tracking-wider border-b border-white/10 pb-2">
                   <span>ATTACHED RENTAL LIST ({cart.length} ITEMS)</span>
                   <span>${totalEstimate} EST.</span>
@@ -167,19 +167,19 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
-                        className="lg:col-span-7 bg-gradient-to-br from-neutral-900 to-black p-8 sm:p-10 rounded-2xl border border-neutral-800"
+                        className="lg:col-span-7 bg-gradient-to-br from-neutral-900 to-black p-5 sm:p-10 rounded-2xl border border-neutral-800"
           >
             {isSubmitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
-                                className="py-12 text-center space-y-6"
+                                className="py-8 sm:py-12 text-center space-y-5 sm:space-y-6"
               >
                 <div className="w-16 h-16 rounded-full bg-[#E50914] text-white mx-auto flex items-center justify-center">
                   <Check className="w-8 h-8 stroke-[3]" />
                 </div>
-                <h3 className="font-display text-4xl text-white uppercase tracking-wider">
+                <h3 className="font-display text-3xl sm:text-4xl text-white uppercase tracking-wider">
                   SESSION SUBMITTED
                 </h3>
                 <p className="text-neutral-300 font-sans text-sm max-w-md mx-auto font-light leading-relaxed">
@@ -193,8 +193,8 @@ export default function ContactSection() {
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6 font-sans text-sm">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 font-sans text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                   <div className="space-y-2">
                     <label htmlFor="contact-name" className="block text-neutral-300 text-xs uppercase tracking-wider font-semibold">
                       YOUR NAME / ARTIST NAME *
@@ -206,7 +206,7 @@ export default function ContactSection() {
                       placeholder="e.g. Travis Scott / Management"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-sm placeholder-neutral-500 focus:outline-none focus:border-[#E50914] px-0 transition-colors"
+                      className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-base sm:text-sm placeholder-neutral-500 focus:outline-none focus:border-[#E50914] px-0 transition-colors"
                     />
                   </div>
 
@@ -221,12 +221,12 @@ export default function ContactSection() {
                       placeholder="artist@recordlabel.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-sm placeholder-neutral-500 focus:outline-none focus:border-[#E50914] px-0 transition-colors"
+                      className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-base sm:text-sm placeholder-neutral-500 focus:outline-none focus:border-[#E50914] px-0 transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                   <div className="space-y-2">
                     <label htmlFor="contact-phone" className="block text-neutral-300 text-xs uppercase tracking-wider font-semibold">
                       PHONE / WHATSAPP
@@ -237,7 +237,7 @@ export default function ContactSection() {
                       placeholder="+1 (555) 000-0000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-sm placeholder-neutral-500 focus:outline-none focus:border-[#E50914] px-0 transition-colors"
+                      className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-base sm:text-sm placeholder-neutral-500 focus:outline-none focus:border-[#E50914] px-0 transition-colors"
                     />
                   </div>
 
@@ -250,7 +250,7 @@ export default function ContactSection() {
                       aria-label="Select production project type"
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                      className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-sm focus:outline-none focus:border-[#E50914] px-0 transition-colors cursor-pointer"
+                      className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-base sm:text-sm focus:outline-none focus:border-[#E50914] px-0 transition-colors cursor-pointer"
                     >
                       <option value="Music Video" className="bg-neutral-900 text-white">Music Video Production</option>
                       <option value="EP Visualizer" className="bg-neutral-900 text-white">EP Visualizer Series</option>
@@ -271,7 +271,7 @@ export default function ContactSection() {
                     placeholder="Tell us about your song concept, target dates, location, or gear needs..."
                     value={formData.details}
                     onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                    className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-sm placeholder-neutral-500 focus:outline-none focus:border-[#E50914] px-0 transition-colors resize-none"
+                    className="w-full py-3 bg-transparent border-b border-neutral-700 rounded-none text-white font-sans text-base sm:text-sm placeholder-neutral-500 focus:outline-none focus:border-[#E50914] px-0 transition-colors resize-none"
                   />
                 </div>
 
@@ -279,7 +279,7 @@ export default function ContactSection() {
                   type="submit"
                   disabled={isSubmitting}
                   onMouseEnter={playHoverSound}
-                  className="w-full py-4 px-8 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-sans font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all"
+                  className="w-full py-3.5 sm:py-4 px-6 sm:px-8 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-sans font-bold text-xs uppercase tracking-wider sm:tracking-widest flex items-center justify-center gap-2 transition-all"
                 >
                   {isSubmitting ? (
                     <span>TRANSMITTING INQUIRY...</span>

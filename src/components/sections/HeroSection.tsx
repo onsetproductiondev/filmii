@@ -45,7 +45,7 @@ export default function HeroSection() {
   return (
     <section ref={containerRef} className="relative h-[150vh] bg-[#050505]">
       {/* Sticky Viewport Container (Pinned in place during initial scroll) */}
-      <div className="sticky top-0 h-svh w-full flex flex-col justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-[#050505] select-none overflow-hidden">
+      <div className="sticky top-0 h-svh w-full flex flex-col justify-center pt-20 sm:pt-28 pb-8 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-[#050505] select-none overflow-hidden">
         
         {/* Visual Cinematic Background Poster */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -92,13 +92,13 @@ export default function HeroSection() {
             className="w-full origin-left transform-gpu"
           >
             {/* Brand Tag (Safely clear below Navbar) */}
-            <div className="flex items-center gap-2 text-[13px] font-mono tracking-[0.25em] text-[#E50914] uppercase mb-2 sm:mb-3 font-semibold">
+            <div className="flex items-center gap-2 text-[11px] sm:text-[13px] font-mono tracking-[0.14em] sm:tracking-[0.25em] text-[#E50914] uppercase mb-2 sm:mb-3 font-semibold">
               <Film className="w-4 h-4 text-[#E50914]" />
               <span>ONSET PRODUCTION STUDIO</span>
             </div>
 
             {/* Line 1 */}
-            <h1 className="font-display text-[clamp(3.25rem,9vw,10.5rem)] leading-[0.84] tracking-tight text-white uppercase font-normal">
+            <h1 className="font-display text-[clamp(2.75rem,13vw,10.5rem)] sm:text-[clamp(3.25rem,9vw,10.5rem)] leading-[0.84] tracking-tight text-white uppercase font-normal">
               WE MAKE
             </h1>
           </motion.div>
@@ -112,7 +112,7 @@ export default function HeroSection() {
             }}
             className="w-full origin-left transform-gpu -mt-1"
           >
-            <h1 className="font-display text-[clamp(3.25rem,9vw,10.5rem)] leading-[0.84] tracking-tight text-white uppercase font-normal">
+            <h1 className="font-display text-[clamp(2.75rem,13vw,10.5rem)] sm:text-[clamp(3.25rem,9vw,10.5rem)] leading-[0.84] tracking-tight text-white uppercase font-normal">
               STORIES LOOK
             </h1>
           </motion.div>
@@ -127,24 +127,24 @@ export default function HeroSection() {
             className="w-full origin-left transform-gpu -mt-1"
           >
             {/* Line 3 */}
-            <h1 className="font-display text-[clamp(3.25rem,9vw,10.5rem)] leading-[0.84] tracking-tight text-[#E50914] uppercase font-normal drop-shadow-[0_0_35px_rgba(229,9,20,0.55)]">
+            <h1 className="font-display text-[clamp(2.75rem,13vw,10.5rem)] sm:text-[clamp(3.25rem,9vw,10.5rem)] leading-[0.84] tracking-tight text-[#E50914] uppercase font-normal drop-shadow-[0_0_35px_rgba(229,9,20,0.55)]">
               EXPENSIVE.
             </h1>
 
             {/* Manifesto Quote Paragraph */}
-            <div className="mt-6 sm:mt-7 max-w-xl text-left">
-              <p className="text-neutral-400 text-xs sm:text-sm lg:text-base font-sans font-light leading-relaxed tracking-wide">
+            <div className="mt-4 sm:mt-7 max-w-xl text-left">
+              <p className="text-neutral-400 text-[13px] sm:text-sm lg:text-base font-sans font-light leading-relaxed tracking-wide">
                 Bridging the gap between raw creative vision and elite cinema production. We build premium visual worlds for global artists and commercial directors.
               </p>
 
               {/* Two Core Action Buttons (Side-by-side, safely above screen bottom edge) */}
-              <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-4 sm:gap-5">
+              <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-3 sm:gap-5">
                 {/* Primary CTA: Solid Red */}
                 <a
                   href="#work"
                   onMouseEnter={playHoverSound}
                   onClick={playShutterSound}
-                  className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[13px] font-bold uppercase tracking-wider transition-all hover:scale-105"
+                  className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[11px] sm:text-[13px] font-bold uppercase tracking-wider transition-all hover:scale-105"
                 >
                   <span>VIEW OUR WORK</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -155,7 +155,7 @@ export default function HeroSection() {
                   href="#contact"
                   onMouseEnter={playHoverSound}
                   onClick={playShutterSound}
-                  className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-white/5 border border-white/20 hover:bg-white/10 text-white font-mono text-[13px] font-bold uppercase tracking-wider backdrop-blur-sm transition-all hover:scale-105"
+                  className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white/5 border border-white/20 hover:bg-white/10 text-white font-mono text-[11px] sm:text-[13px] font-bold uppercase tracking-wider backdrop-blur-sm transition-all hover:scale-105"
                 >
                   <span>START A PROJECT</span>
                 </a>

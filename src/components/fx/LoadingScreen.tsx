@@ -73,7 +73,7 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
           exit={{ opacity: 0, scale: 1.05 }}
           transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
           style={{ willChange: "transform, opacity" }}
-          className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center p-8 select-none"
+          className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center p-5 sm:p-8 select-none"
         >
           {/* Center Slate Clapperboard & Title */}
           <div className="flex flex-col items-center justify-center space-y-6 w-full max-w-md">
@@ -108,7 +108,7 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
 
             {/* Progress Bar & Numeric Indicator */}
             <div className="w-full space-y-2">
-              <div className="flex justify-between items-center font-mono text-[13px]">
+              <div className="flex justify-between items-center font-mono text-[11px] sm:text-[13px]">
                 <span className="text-neutral-500 uppercase tracking-widest">Initializing On-Set Rig</span>
                 <span className="text-red-500 font-bold">{progress}%</span>
               </div>

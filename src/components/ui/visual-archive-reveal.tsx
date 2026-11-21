@@ -382,7 +382,7 @@ export default function VisualArchiveReveal({
 
       <div className="mx-auto flex w-[min(1280px,calc(100%-36px))] flex-col items-start justify-between gap-6 border-b border-white/10 pb-8 md:w-[min(1280px,calc(100%-64px))] md:flex-row md:items-end md:gap-16">
         <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#E50914]">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#E50914]">
             03 / Selected work
           </p>
 

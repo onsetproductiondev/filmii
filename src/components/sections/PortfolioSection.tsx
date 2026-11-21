@@ -38,7 +38,7 @@ function SectionBanner() {
         className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-8"
       >
         {/* <div>
-          <span className="text-[13px] font-mono text-[#E50914] uppercase tracking-[0.2em] font-semibold block mb-2">
+          <span className="text-[11px] sm:text-[13px] font-mono text-[#E50914] uppercase tracking-[0.12em] sm:tracking-[0.2em] font-semibold block mb-2">
             03 / SELECTED WORK
           </span>
           <h2 className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-wider uppercase text-white">

@@ -70,7 +70,7 @@ function RequestDialog({ kit, onClose }: { kit: string | null; onClose: () => vo
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 40, scale: 0.96 }}
         transition={{ type: "spring", stiffness: 260, damping: 30, mass: 0.9 }}
-        className="relative z-10 w-full md:max-w-xl max-h-[92dvh] overflow-y-auto overscroll-contain bg-[#0A0A0A] border border-white/10 rounded-t-3xl md:rounded-2xl p-6 sm:p-8 shadow-[0_0_80px_rgba(229,9,20,0.15)]"
+        className="relative z-10 w-full md:max-w-xl max-h-[92dvh] overflow-y-auto overscroll-contain bg-[#0A0A0A] border border-white/10 rounded-t-3xl md:rounded-2xl p-5 sm:p-8 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-[0_0_80px_rgba(229,9,20,0.15)]"
       >
         <button
           type="button"
@@ -104,7 +104,7 @@ function RequestDialog({ kit, onClose }: { kit: string | null; onClose: () => vo
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5 font-sans text-sm">
             <div className="pr-10">
-              <span className="text-[11px] font-mono text-[#E50914] uppercase tracking-[0.2em] font-semibold block mb-1">
+              <span className="text-[11px] font-mono text-[#E50914] uppercase tracking-[0.12em] sm:tracking-[0.2em] font-semibold block mb-1">
                 EQUIPMENT / REQUEST
               </span>
               <h3 className="font-display text-3xl sm:text-4xl tracking-wider text-white uppercase leading-none">
@@ -155,7 +155,7 @@ function RequestDialog({ kit, onClose }: { kit: string | null; onClose: () => vo
               type="submit"
               disabled={isSubmitting}
               onMouseEnter={playHoverSound}
-              className="w-full py-4 px-8 rounded-full bg-[#E50914] hover:bg-red-700 disabled:opacity-60 text-white font-mono text-[13px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors"
+              className="w-full py-3.5 sm:py-4 px-5 sm:px-8 rounded-full bg-[#E50914] hover:bg-red-700 disabled:opacity-60 text-white font-mono text-[11px] sm:text-[13px] font-bold uppercase tracking-wider sm:tracking-widest flex items-center justify-center gap-2 transition-colors"
             >
               {isSubmitting ? <span>SENDING...</span> : (<><span>SEND REQUEST</span><Send className="w-4 h-4" /></>)}
             </button>

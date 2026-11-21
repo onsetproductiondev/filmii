@@ -15,15 +15,15 @@ export default function WorkTimeline() {
   return (
     <div
       id="work-categories"
-      className="scroll-mt-[120px] max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-10 pb-16 md:pt-16 md:pb-28"
+      className="scroll-mt-[120px] max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-8 pb-12 md:pt-16 md:pb-28"
     >
       <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
         {/* sticky heading (like the reference: eyebrow + title) */}
         <div className="lg:sticky lg:top-32 lg:self-start">
-          <span className="block font-mono text-[13px] uppercase tracking-[0.2em] text-[#E50914] font-semibold">
+          <span className="block font-mono text-[11px] sm:text-[13px] uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#E50914] font-semibold">
             Browse by category
           </span>
-          <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl uppercase leading-[0.95] tracking-wide text-white">
+          <h2 className="mt-4 font-display text-3xl sm:text-5xl lg:text-6xl uppercase leading-[0.95] tracking-wide text-white">
             Our work,
             <br />
             step by step
@@ -71,7 +71,7 @@ function TimelineItem({
   useMotionValueEvent(scrollYProgress, "change", (v) => setActive(v > 0));
 
   return (
-    <li ref={ref} className={`relative pl-14 sm:pl-16 ${isLast ? "" : "pb-12 sm:pb-24"}`}>
+    <li ref={ref} className={`relative pl-12 sm:pl-16 ${isLast ? "" : "pb-12 sm:pb-24"}`}>
       {/* grey track + red fill that grows while you scroll */}
       {!isLast && (
         <>
@@ -94,7 +94,7 @@ function TimelineItem({
 
       {/* step content: big number, title, description */}
       <span
-        className={`font-display text-5xl sm:text-6xl leading-none transition-colors duration-300 ${
+        className={`font-display text-4xl sm:text-6xl leading-none transition-colors duration-300 ${
           active ? "text-[#E50914]" : "text-neutral-800"
         }`}
       >
@@ -114,13 +114,13 @@ function TimelineItem({
         className="group mt-3 flex w-fit items-center gap-3"
       >
         <h3
-          className={`font-display text-3xl sm:text-5xl uppercase tracking-wide transition-colors duration-300 group-hover:text-[#E50914] ${
+          className={`font-display text-2xl sm:text-5xl uppercase tracking-wide transition-colors duration-300 group-hover:text-[#E50914] ${
             active ? "text-white" : "text-neutral-600"
           }`}
         >
           {category.title}
         </h3>
-        <ArrowUpRight className="size-5 sm:size-7 text-neutral-500 transition-all duration-300 group-hover:text-[#E50914] group-hover:translate-x-1 group-hover:-translate-y-1" />
+        <ArrowUpRight className="size-4 sm:size-7 text-neutral-500 transition-all duration-300 group-hover:text-[#E50914] group-hover:translate-x-1 group-hover:-translate-y-1" />
       </Link>
 
       <p

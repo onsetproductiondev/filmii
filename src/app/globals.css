@@ -21,6 +21,11 @@
     color: var(--foreground);
   }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
@@ -156,4 +161,25 @@ html {
   .animate-marquee {
     animation: none;
   }
+}
+
+/* ---------- Mobile polish ---------- */
+@media (max-width: 639px) {
+  /* no sideways scrolling, no stray horizontal bounce */
+  html, body { max-width: 100%; overflow-x: clip; }
+
+  /* thin scrollbar gutter wastes width on phones */
+  html { scrollbar-gutter: auto; }
+
+  /* media never overflows its box */
+  img, video, canvas, svg { max-width: 100%; }
+
+  /* snappier taps, no grey flash */
+  a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+  /* long words / emails / numbers wrap instead of pushing the layout */
+  h1, h2, h3, h4, p, a, span { overflow-wrap: anywhere; }
+
+  /* leave room under the page for the home-indicator / Netlify badge */
+  footer { padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
 }

@@ -237,7 +237,7 @@ export default function EquipmentSection() {
   return (
     <section
       id="equipment"
-      className="relative py-16 sm:py-24 md:py-32 px-6 sm:px-8 lg:px-12 bg-[#050505] text-white overflow-hidden"
+      className="relative py-12 sm:py-24 md:py-32 px-4 sm:px-8 lg:px-12 bg-[#050505] text-white overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -255,21 +255,21 @@ export default function EquipmentSection() {
           className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 md:mb-16 border-b border-white/10 pb-8"
         >
           <div>
-            <span className="text-[13px] font-mono text-[#E50914] uppercase tracking-[0.2em] font-semibold block mb-2">
+            <span className="text-[11px] sm:text-[13px] font-mono text-[#E50914] uppercase tracking-[0.12em] sm:tracking-[0.2em] font-semibold block mb-2">
               04 / CINEMA GEAR / RENTAL
             </span>
-            <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-wider uppercase text-white">
+            <h2 className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-wide sm:tracking-wider uppercase text-white">
               EQUIPMENT
             </h2>
           </div>
 
-          <p className="text-neutral-400 font-sans text-base max-w-md mt-4 md:mt-0 leading-relaxed font-light">
+          <p className="text-neutral-400 font-sans text-sm sm:text-base max-w-md mt-4 md:mt-0 leading-relaxed font-light">
             Professional cinema equipment for productions that demand more.
           </p>
         </RevealDiv>
 
         {/* Editorial 2x2 Category Showcase Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-12 md:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 lg:gap-10 mb-10 md:mb-20">
           {categories.map((cat, idx) => (
             <motion.button
               key={cat.id}
@@ -307,7 +307,7 @@ export default function EquipmentSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 group-hover:from-black/95 group-hover:via-black/50 transition-colors duration-500" />
 
               {/* Category Info Overlay */}
-              <div className="absolute inset-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+              <div className="absolute inset-0 p-4 sm:p-8 lg:p-10 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                   <span className="text-[11px] font-mono text-neutral-400 tracking-widest uppercase">
                     0{idx + 1} / CATEGORY
@@ -316,15 +316,15 @@ export default function EquipmentSection() {
 
                 <div className="flex items-end justify-between gap-4">
                   <div className="space-y-1 sm:space-y-2">
-                    <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl tracking-wider text-white uppercase group-hover:text-neutral-200 transition-colors">
+                    <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl tracking-wide sm:tracking-wider text-white uppercase group-hover:text-neutral-200 transition-colors">
                       {cat.title}
                     </h3>
-                    <p className="font-mono text-[13px] sm:text-sm text-neutral-400 tracking-widest uppercase font-medium">
+                    <p className="font-mono text-[10px] sm:text-sm text-neutral-400 tracking-wider sm:tracking-widest uppercase font-medium">
                       {cat.brands}
                     </p>
                   </div>
 
-                  <div className="inline-flex items-center gap-2 font-mono text-[13px] uppercase tracking-wider text-white group-hover:text-[#E50914] transition-colors pb-1 shrink-0">
+                  <div className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-[13px] uppercase tracking-wider text-white group-hover:text-[#E50914] transition-colors pb-1 shrink-0">
                     <span className="hidden sm:inline">VIEW GEAR</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
                   </div>
@@ -346,10 +346,10 @@ export default function EquipmentSection() {
             mass: 0.8,
             restDelta: 0.001,
           }}
-          className="border-t border-white/10 pt-10 md:pt-16 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left"
+          className="border-t border-white/10 pt-10 md:pt-16 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 text-center md:text-left"
         >
           <div className="space-y-2 max-w-xl">
-            <h3 className="font-display text-3xl sm:text-4xl tracking-wider text-white uppercase">
+            <h3 className="font-display text-2xl sm:text-4xl tracking-wider text-white uppercase">
               NEED SPECIFIC GEAR?
             </h3>
             <p className="font-sans text-neutral-400 text-sm sm:text-base font-light leading-relaxed">
@@ -365,7 +365,7 @@ export default function EquipmentSection() {
               playShutterSound();
               openRequest(null);
             }}
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[13px] font-bold uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(229,9,20,0.3)] shrink-0 cursor-pointer"
+            className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[11px] sm:text-[13px] font-bold uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(229,9,20,0.3)] shrink-0 cursor-pointer"
           >
             <span>REQUEST EQUIPMENT</span>
             <ArrowRight className="w-4 h-4" />
@@ -416,7 +416,7 @@ export default function EquipmentSection() {
               onDragEnd={(_, info) => {
                 if (info.offset.y > 100 || info.velocity.y > 500) closeModal();
               }}
-              className="relative z-10 w-full md:max-w-4xl max-h-[88dvh] md:max-h-[80vh] flex flex-col md:flex-row overflow-hidden bg-[#0A0A0A] border border-white/10 rounded-t-3xl md:rounded-2xl shadow-[0_0_80px_rgba(229,9,20,0.15)]"
+              className="relative z-10 w-full md:max-w-4xl max-h-[88dvh] md:max-h-[80vh] pb-[env(safe-area-inset-bottom)] flex flex-col md:flex-row overflow-hidden bg-[#0A0A0A] border border-white/10 rounded-t-3xl md:rounded-2xl shadow-[0_0_80px_rgba(229,9,20,0.15)]"
             >
               {/* Drag handle (mobile only) */}
               <div className="md:hidden absolute top-2 left-1/2 -translate-x-1/2 z-20 h-1 w-10 rounded-full bg-white/40" />
@@ -445,7 +445,7 @@ export default function EquipmentSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-black/30 to-transparent md:bg-gradient-to-r md:from-transparent md:via-black/20 md:to-[#0A0A0A]" />
                 <div className="absolute bottom-3 left-5 right-5 md:bottom-8 md:left-8 md:right-8">
-                  <span className="text-[11px] font-mono text-[#E50914] uppercase tracking-[0.2em] font-semibold block mb-1">
+                  <span className="text-[11px] font-mono text-[#E50914] uppercase tracking-[0.12em] sm:tracking-[0.2em] font-semibold block mb-1">
                     {active.brands}
                   </span>
                   <h3 className="font-display text-3xl md:text-5xl tracking-wider text-white uppercase leading-none">
@@ -495,7 +495,7 @@ export default function EquipmentSection() {
                           {item.specs}
                         </p>
                       </div>
-                      <span className="shrink-0 font-mono text-[13px] text-[#E50914] border border-[#E50914]/30 rounded-full px-2.5 py-1">
+                      <span className="shrink-0 font-mono text-[11px] sm:text-[13px] text-[#E50914] border border-[#E50914]/30 rounded-full px-2.5 py-1">
                         ×{item.qty}
                       </span>
                     </li>
@@ -509,7 +509,7 @@ export default function EquipmentSection() {
                     playShutterSound();
                     openRequest(active.title);
                   }}
-                  className="flex w-full md:inline-flex md:w-auto items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[13px] font-bold uppercase tracking-widest transition-colors shadow-[0_0_30px_rgba(229,9,20,0.3)] cursor-pointer"
+                  className="flex w-full md:inline-flex md:w-auto items-center justify-center gap-3 px-6 md:px-8 py-3.5 md:py-4 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[11px] sm:text-[13px] font-bold uppercase tracking-widest transition-colors shadow-[0_0_30px_rgba(229,9,20,0.3)] cursor-pointer"
                 >
                   <span>REQUEST THIS KIT</span>
                   <ArrowRight className="w-4 h-4" />

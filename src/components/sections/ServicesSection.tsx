@@ -72,7 +72,7 @@ export default function ServicesSection() {
                     className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 md:mb-20 border-b border-white/10 pb-8"
         >
           <div>
-            <span className="text-[13px] font-mono text-[#E50914] uppercase tracking-[0.2em] font-semibold block mb-2">
+            <span className="text-[11px] sm:text-[13px] font-mono text-[#E50914] uppercase tracking-[0.12em] sm:tracking-[0.2em] font-semibold block mb-2">
               02 / PRODUCTION CAPABILITIES
             </span>
             <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-wider uppercase text-white">
@@ -104,7 +104,7 @@ export default function ServicesSection() {
                   <span className="font-display text-6xl lg:text-7xl text-neutral-600 block group-hover:text-[#E50914] transition-colors">
                     {service.num}
                   </span>
-                  <span className="text-[13px] font-mono text-[#E50914] tracking-widest uppercase block font-semibold">
+                  <span className="text-[11px] sm:text-[13px] font-mono text-[#E50914] tracking-widest uppercase block font-semibold">
                     {service.category}
                   </span>
                   <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-wider text-white uppercase group-hover:text-neutral-200 transition-colors">
@@ -118,7 +118,7 @@ export default function ServicesSection() {
                     {service.description}
                   </p>
 
-                  <ul className="space-y-2 font-mono text-[13px] text-neutral-400">
+                  <ul className="space-y-2 font-mono text-[11px] sm:text-[13px] text-neutral-400">
                     {service.features.map((feat) => (
                       <li key={feat} className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#E50914]" />
@@ -149,7 +149,7 @@ export default function ServicesSection() {
                   <a
                     href={service.href}
                     onClick={playShutterSound}
-                    className="inline-flex items-center gap-3 text-[13px] font-mono font-bold text-white group-hover:text-[#E50914] uppercase tracking-wider transition-colors"
+                    className="inline-flex items-center gap-3 text-[11px] sm:text-[13px] font-mono font-bold text-white group-hover:text-[#E50914] uppercase tracking-wider transition-colors"
                   >
                     <span>VIEW SERVICE</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />

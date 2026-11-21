@@ -56,7 +56,7 @@ export default function CartDrawer() {
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
             style={{ transformPerspective: 1000, willChange: "transform, opacity" }}
-            className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-neutral-950 border-l border-neutral-800 z-[90] flex flex-col justify-between p-6 shadow-[0_0_50px_rgba(255,0,0,0.3)]"
+            className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-neutral-950 border-l border-neutral-800 z-[90] flex flex-col justify-between p-4 sm:p-6 shadow-[0_0_50px_rgba(255,0,0,0.3)]"
           >
             {/* Header */}
             <div className="flex justify-between items-center border-b border-neutral-800 pb-4">
@@ -65,10 +65,10 @@ export default function CartDrawer() {
                   <ShoppingBag className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-display text-2xl tracking-wider text-white uppercase">
+                  <h3 className="font-display text-xl sm:text-2xl tracking-wider text-white uppercase">
                     GEAR <span className="text-red-600">RENTAL CART</span>
                   </h3>
-                  <p className="text-[13px] font-mono text-neutral-400">
+                  <p className="text-[11px] sm:text-[13px] font-mono text-neutral-400">
                     {cart.length} PACKAGE ITEM{cart.length !== 1 ? "S" : ""} SELECTED
                   </p>
                 </div>
@@ -106,9 +106,9 @@ export default function CartDrawer() {
                     exit={{ opacity: 0, x: 50 }}
                     transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
                     style={{ transformPerspective: 1000, willChange: "transform, opacity" }}
-                    className="p-4 rounded-xl bg-neutral-900/90 border border-neutral-800 hover:border-red-600/50 transition-all flex gap-4"
+                    className="p-3 sm:p-4 rounded-xl bg-neutral-900/90 border border-neutral-800 hover:border-red-600/50 transition-all flex gap-3 sm:gap-4"
                   >
-                    <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-neutral-950 flex-shrink-0 border border-neutral-800">
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden bg-neutral-950 flex-shrink-0 border border-neutral-800">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -117,7 +117,7 @@ export default function CartDrawer() {
                       />
                     </div>
 
-                    <div className="flex-1 flex flex-col justify-between">
+                    <div className="flex-1 min-w-0 flex flex-col justify-between">
                       <div className="flex justify-between items-start">
                         <div>
                           <span className="text-[11px] font-mono text-red-500 uppercase tracking-widest block font-semibold">
@@ -142,7 +142,7 @@ export default function CartDrawer() {
 
                       <div className="flex justify-between items-end mt-2">
                         {/* Days Counter */}
-                        <div className="flex items-center gap-1.5 text-[13px] font-mono bg-neutral-950 px-2 py-1 rounded border border-neutral-800">
+                        <div className="flex items-center gap-1.5 text-[11px] sm:text-[13px] font-mono bg-neutral-950 px-2 py-1 rounded border border-neutral-800">
                           <Calendar className="w-3 h-3 text-red-500" />
                           <span className="text-neutral-300">DAYS:</span>
                           <input
@@ -188,13 +188,13 @@ export default function CartDrawer() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   <button
                     onClick={() => {
                       playHoverSound();
                       clearCart();
                     }}
-                    className="py-3 px-4 rounded-xl border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 font-mono text-[13px] uppercase tracking-wider transition-colors"
+                    className="py-3 px-2 sm:px-4 rounded-xl border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 font-mono text-[11px] sm:text-[13px] uppercase tracking-wider transition-colors"
                   >
                     CLEAR LIST
                   </button>
@@ -202,7 +202,7 @@ export default function CartDrawer() {
                   <button
                     onClick={handleCheckout}
                     disabled={submitted}
-                    className="py-3 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold font-mono text-[13px] uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,0,0,0.5)] transition-all"
+                    className="py-3 px-2 sm:px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold font-mono text-[11px] sm:text-[13px] uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,0,0,0.5)] transition-all"
                   >
                     {submitted ? (
                       <>

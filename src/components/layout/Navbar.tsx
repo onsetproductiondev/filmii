@@ -50,18 +50,18 @@ export default function Navbar({ hidden = false }: NavbarProps) {
           : "translate-y-0 opacity-100"
       } ${
         scrolled
-          ? "bg-[#050505]/95 backdrop-blur-sm border-neutral-900 py-5"
-          : "bg-gradient-to-b from-black/90 via-black/40 to-transparent border-transparent py-5"
+          ? "bg-[#050505]/95 backdrop-blur-sm border-neutral-900 py-3 sm:py-5"
+          : "bg-gradient-to-b from-black/90 via-black/40 to-transparent border-transparent py-3 sm:py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
         {/* Minimal Studio Brand Mark */}
         <a
           href="#"
           onMouseEnter={playHoverSound}
           className="group flex items-center gap-3 text-decoration-none"
         >
-          <span className="font-display text-2xl sm:text-3xl tracking-widest text-white uppercase font-normal group-hover:text-neutral-300 transition-colors">
+          <span className="font-display text-xl sm:text-3xl tracking-wider sm:tracking-widest whitespace-nowrap text-white uppercase font-normal group-hover:text-neutral-300 transition-colors">
             ONSET <span className="text-[#E50914]">PRODUCTION</span>
           </span>
         </a>
@@ -73,7 +73,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
               key={link.label}
               href={link.href}
               onMouseEnter={playHoverSound}
-              className="text-[13px] font-mono tracking-widest text-neutral-400 hover:text-white transition-colors relative py-1 group"
+              className="text-[11px] sm:text-[13px] font-mono tracking-widest text-neutral-400 hover:text-white transition-colors relative py-1 group"
             >
               {link.label}
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#E50914] group-hover:w-full transition-all duration-300" />
@@ -82,7 +82,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
         </nav>
 
         {/* Studio Controls & CTA */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-0.5 sm:gap-4">
           {/* Mute/Sound SFX Toggle */}
           <button
             onClick={() => {
@@ -122,7 +122,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
           <a
             href="#contact"
             onMouseEnter={playHoverSound}
-            className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[13px] font-bold uppercase tracking-wider transition-all"
+            className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#E50914] hover:bg-red-700 text-white font-mono text-[11px] sm:text-[13px] font-bold uppercase tracking-wider transition-all"
           >
             START A PROJECT
           </a>
@@ -147,14 +147,14 @@ export default function Navbar({ hidden = false }: NavbarProps) {
             exit={{ opacity: 0, height: 0 }}
             transition={{ type: "spring", stiffness: 90, damping: 25, mass: 0.8, restDelta: 0.001 }}
             style={{ transformPerspective: 1000, willChange: "transform, opacity" }}
-            className="md:hidden bg-[#0A0A0A] border-b border-white/10 px-8 py-6 space-y-4"
+            className="md:hidden bg-[#0A0A0A] border-b border-white/10 px-4 sm:px-8 py-5 sm:py-6 space-y-3 sm:space-y-4"
           >
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-sm font-mono tracking-widest text-neutral-300 hover:text-[#E50914]"
+                className="block py-1 text-[13px] sm:text-sm font-mono tracking-wider text-neutral-300 hover:text-[#E50914]"
               >
                 {link.label}
               </a>
@@ -162,7 +162,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-center py-3 bg-[#E50914] text-white font-mono font-bold text-[13px] uppercase tracking-wider rounded-full"
+              className="block w-full text-center py-3 bg-[#E50914] text-white font-mono font-bold text-[11px] sm:text-[13px] uppercase tracking-wider rounded-full"
             >
               START A PROJECT
             </a>
