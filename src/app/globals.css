@@ -182,4 +182,7 @@ html {
 
   /* leave room under the page for the home-indicator / Netlify badge */
   footer { padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
+
+  /* form controls: 16px stops iOS/Android zooming in on focus */
+  input, select, textarea { font-size: 16px; }
 }

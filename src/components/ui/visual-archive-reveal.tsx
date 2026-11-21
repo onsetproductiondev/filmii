@@ -139,8 +139,19 @@ export default function VisualArchiveReveal({
   /* ---------------------------------------------------------
    * VIDEO SECTION ENTRY
    *
-   * - flag true  -> ball drops (once ~75% of the stage is visible)
+   * - flag true  -> ball drops as soon as enough of the stage is visible
    * - flag false -> no ball, the normal (paused) video is shown
+   *
+   * FAST-SCROLL FIX
+   * An IntersectionObserver can miss the moment the stage is "75% visible"
+   * when the user flicks quickly (the stage jumps from 0 to past the
+   * threshold between two frames). So the drop is triggered from THREE places:
+   *   1. the observer (low thresholds, so any entry is noticed),
+   *   2. a debounced scroll check that fires when scrolling settles,
+   *   3. a pre-load margin so the drop starts slightly before the stage
+   *      is fully on screen.
+   * On mobile the stage is also pinned for a while (see RENDER), so the
+   * bounce stays on screen long enough to be seen.
    * --------------------------------------------------------- */
 
   useEffect(() => {
@@ -154,73 +165,115 @@ export default function VisualArchiveReveal({
       setPhase((p) => (p === "idle" ? "paused" : p));
     };
 
+    const startDrop = () => {
+      // Reduced motion: static ball, no animation.
+      if (reduceMotion) {
+        hasVisitedHeroRef.current = false;
+        setPhase("ready");
+        return;
+      }
+
+      const mobile = window.innerWidth < 768;
+      const h = window.innerHeight;
+
+      setDrop({
+        // desktop stage clips at the screen edge, so start just above it
+        from: -Math.round(mobile ? h * 0.45 : h / 2 + 240),
+        b1: mobile ? 34 : 56,
+        b2: mobile ? 10 : 18,
+      });
+      setPhase("drop");
+
+      if (dropTimerRef.current !== undefined) {
+        window.clearTimeout(dropTimerRef.current);
+      }
+
+      dropTimerRef.current = window.setTimeout(() => {
+        dropTimerRef.current = undefined;
+
+        // Ball animation finished: flag is used up.
+        hasVisitedHeroRef.current = false;
+        setPhase("ready");
+      }, DROP_DURATION * 1000 + 50);
+    };
+
+    // One entry point for "the stage is visible enough".
+    const handleVisible = (ratio: number) => {
+      const mobile = window.innerWidth < 768;
+      const enterAt = mobile ? 0.3 : 0.75;
+      const leaveBelow = mobile ? 0.02 : 0.2;
+
+      if (ratio > 0 && !hasVisitedHeroRef.current) {
+        // Ball already dropped and is waiting for a click: keep it there,
+        // never reveal the video without a click.
+        if (phaseRef.current === "ready") return;
+
+        showNormalVideo();
+        return;
+      }
+
+      if (ratio >= enterAt) {
+        if (wasIntersectingRef.current) return;
+
+        wasIntersectingRef.current = true;
+
+        if (!hasVisitedHeroRef.current) return;
+
+        startDrop();
+      } else if (ratio < leaveBelow) {
+        wasIntersectingRef.current = false;
+
+        if (dropTimerRef.current !== undefined) {
+          window.clearTimeout(dropTimerRef.current);
+          dropTimerRef.current = undefined;
+        }
+
+        // Left the section mid-drop: reset so the next entry drops the ball again.
+        // If the ball is already waiting ("ready"), it stays until the user clicks it.
+        setPhase((p) => (p === "drop" ? "idle" : p));
+      }
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry) return;
-
-        const ratio = entry.intersectionRatio;
-
-        if (ratio > 0 && !hasVisitedHeroRef.current) {
-          // Ball already dropped and is waiting for a click: keep it there,
-          // never reveal the video without a click.
-          if (phaseRef.current === "ready") return;
-
-          showNormalVideo();
-          return;
-        }
-
-        if (ratio >= 0.75) {
-          if (wasIntersectingRef.current) return;
-
-          wasIntersectingRef.current = true;
-
-          if (!hasVisitedHeroRef.current) return;
-
-          // Reduced motion: static ball, no animation.
-          if (reduceMotion) {
-            hasVisitedHeroRef.current = false;
-            setPhase("ready");
-            return;
-          }
-
-          const mobile = window.innerWidth < 768;
-          const h = window.innerHeight;
-
-          setDrop({
-            // desktop stage clips at the screen edge, so start just above it
-            from: -Math.round(mobile ? h * 0.45 : h / 2 + 240),
-            b1: mobile ? 34 : 56,
-            b2: mobile ? 10 : 18,
-          });
-          setPhase("drop");
-
-          dropTimerRef.current = window.setTimeout(() => {
-            dropTimerRef.current = undefined;
-
-            // Ball animation finished: flag is used up.
-            hasVisitedHeroRef.current = false;
-            setPhase("ready");
-          }, DROP_DURATION * 1000 + 50);
-        } else if (ratio < 0.2) {
-          wasIntersectingRef.current = false;
-
-          if (dropTimerRef.current !== undefined) {
-            window.clearTimeout(dropTimerRef.current);
-            dropTimerRef.current = undefined;
-          }
-
-          // Left the section mid-drop: reset so the next entry drops the ball again.
-          // If the ball is already waiting ("ready"), it stays until the user clicks it.
-          setPhase((p) => (p === "drop" ? "idle" : p));
-        }
+        if (entry) handleVisible(entry.intersectionRatio);
       },
-      { threshold: [0, 0.2, 0.75] },
+      {
+        // Fine-grained steps so a quick flick still reports an intermediate ratio.
+        threshold: [0, 0.02, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.75, 0.9, 1],
+        // Start a little BEFORE the stage is on screen.
+        rootMargin: "0px 0px 8% 0px",
+      },
     );
 
     observer.observe(stage);
 
+    // Safety net: when scrolling settles, re-check the real position.
+    let settleTimer: number | undefined;
+
+    const checkPosition = () => {
+      const rect = stage.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+      const ratio = rect.height > 0 ? Math.max(0, visible) / rect.height : 0;
+
+      handleVisible(ratio);
+    };
+
+    const onScroll = () => {
+      if (settleTimer !== undefined) window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(checkPosition, 90);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("touchend", onScroll, { passive: true });
+
     return () => {
       observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("touchend", onScroll);
+
+      if (settleTimer !== undefined) window.clearTimeout(settleTimer);
 
       if (dropTimerRef.current !== undefined) {
         window.clearTimeout(dropTimerRef.current);
@@ -401,17 +454,17 @@ export default function VisualArchiveReveal({
       </div>
 
       {/* CINEMATIC STAGE
-          Mobile has no shrink phase, so the sticky track is shorter. */}
+          Mobile: the 16:9 stage is pinned in the middle of the screen for ~55svh of
+          scrolling so even a fast scroll leaves time to see the bounce.
+          Desktop: full-screen sticky stage for the shrink effect. */}
 
       <div
         ref={stageRef}
-        className="relative mt-8 w-full md:mt-28 md:min-h-[180vh]"
+        className="relative mt-8 min-h-[155svh] w-full md:mt-28 md:min-h-[180vh]"
       >
-        {/* Mobile: stage is exactly the video's 16:9 size (no black bars, no sticky).
-            Desktop: full-screen sticky stage for the shrink effect. */}
         <div
           ref={stickyRef}
-          className="relative flex aspect-video w-full items-center justify-center md:sticky md:top-0 md:aspect-auto md:h-screen md:overflow-hidden"
+          className="sticky top-[calc(50svh-28.125vw)] flex aspect-video w-full items-center justify-center md:top-0 md:aspect-auto md:h-screen md:overflow-hidden"
         >
           {/* BALL (transform + opacity only, so it runs on the GPU) */}
 
@@ -669,7 +722,7 @@ export default function VisualArchiveReveal({
       </div>
 
       {/* Spacer */}
-      <div className="h-8 md:h-24" />
+      <div className="h-4 md:h-24" />
     </section>
   );
 }
